@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens
+ * ----------------------------------------------------------------------------
+ * All brand colours live here as CSS variables so the whole palette can be
+ * re-themed from one place. Components only ever reference the semantic
+ * utilities (bg-brand-600, text-muted, border-line, …) generated below.
+ */
+:root {
+  /* Deep emerald / teal — a bespoke, slightly desaturated scale. */
+  --brand-50: #f0f7f4;
+  --brand-100: #d9ebe4;
+  --brand-200: #b3d8c9;
+  --brand-300: #82bda7;
+  --brand-400: #4f9d83;
+  --brand-500: #2f8168;
+  --brand-600: #1f6b54;
+  --brand-700: #185744;
+  --brand-800: #164537;
+  --brand-900: #12362c;
+  --brand-950: #0a201a;
+
+  /* Neutrals — warm, near-black charcoal with a faint green cast. */
+  --ink: #0e1613;
+  --body: #2f3a35;
+  --muted: #647069;
+  --line: #e7ebe6;
+  --line-strong: #d8ddd6;
+  --surface: #ffffff;
+  --canvas: #f7f8f5;
+  --mist: #eef2ec;
+
+  /* States */
+  --positive: #1f7a4d;
+  --positive-soft: #e6f3ec;
+  --negative: #b23b34;
+  --negative-soft: #f7e9e8;
+}
+
+@theme inline {
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-surface: var(--surface);
+  --color-canvas: var(--canvas);
+  --color-mist: var(--mist);
+
+  --color-positive: var(--positive);
+  --color-positive-soft: var(--positive-soft);
+  --color-negative: var(--negative);
+  --color-negative-soft: var(--negative-soft);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Fluid type scale (mobile → desktop). */
+  --text-hero: clamp(2.5rem, 1.35rem + 3.6vw, 4rem); /* 40 → 64 */
+  --text-hero--line-height: 1.04;
+  --text-hero--letter-spacing: -0.022em;
+
+  --text-h2: clamp(2rem, 1.62rem + 1.5vw, 2.5rem); /* 32 → 40 */
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.018em;
+
+  --text-h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem); /* 22 → 28 */
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-lead: 1.125rem; /* 18 */
+  --text-lead--line-height: 1.6;
+
+  /* Soft, layered shadows — restrained and premium. */
+  --shadow-card: 0 1px 2px rgba(14, 22, 19, 0.04), 0 6px 20px -8px rgba(14, 22, 19, 0.1);
+  --shadow-lift: 0 2px 4px rgba(14, 22, 19, 0.05), 0 18px 40px -16px rgba(14, 22, 19, 0.18);
+
+  --radius-card: 1rem;
+
+  /* Motion */
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.5s ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchored sections so they aren't hidden behind the sticky nav. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--brand-600);
+    color: #ffffff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}

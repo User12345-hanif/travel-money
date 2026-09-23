@@ -26,7 +26,7 @@ export function Hero({ rateTable }: { rateTable: RateTable }) {
           </span>
 
           <h1 className="mt-5 text-hero font-semibold text-ink">
-            Travel money tools
+            Travel money for every journey
           </h1>
 
           <p className="mt-5 text-lead text-muted">
